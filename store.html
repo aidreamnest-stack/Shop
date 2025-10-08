@@ -34,7 +34,9 @@ function loadProducts() {
   });
 }
 
-// Load products on page load
+// Listen to storage changes (when admin updates)
+window.addEventListener('storage', loadProducts);
+
 loadProducts();
 </script>
 
