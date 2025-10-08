@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<style>
+  body { font-family: Arial; margin: 20px; }
+  h1 { text-align: center; }
+  .admin { max-width: 300px; margin: auto; border: 1px solid #333; padding: 20px; }
+  .admin input, .admin button { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+</style>
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+<div class="admin">
+  <input type="text" id="productName" placeholder="Product Name">
+  <input type="text" id="productPrice" placeholder="Price">
+  <input type="text" id="productImage" placeholder="Image URL">
+  <button onclick="addProduct()">Add Product</button>
+</div>
+
+<script>
+// Function to add product
+function addProduct() {
+  const name = document.getElementById('productName').value;
+  const price = document.getElementById('productPrice').value;
+  const image = document.getElementById('productImage').value;
+
+  if (!name || !price || !image) {
+    alert('Please fill all fields');
+    return;
+  }
+
+  const products = JSON.parse(localStorage.getItem('products') || '[]');
+  products.push({ name, price, image });
+  localStorage.setItem('products', JSON.stringify(products));
+
+  document.getElementById('productName').value = '';
+  document.getElementById('productPrice').value = '';
+  document.getElementById('productImage').value = '';
+
+  alert('Product added! Check the store page.');
+}
+</script>
+
+</body>
+</html>
