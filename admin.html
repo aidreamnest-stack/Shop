@@ -22,7 +22,6 @@
 </div>
 
 <script>
-// Function to add product
 function addProduct() {
   const name = document.getElementById('productName').value;
   const price = document.getElementById('productPrice').value;
@@ -37,11 +36,14 @@ function addProduct() {
   products.push({ name, price, image });
   localStorage.setItem('products', JSON.stringify(products));
 
+  // Trigger storage event to update store page
+  window.dispatchEvent(new Event('storage'));
+
   document.getElementById('productName').value = '';
   document.getElementById('productPrice').value = '';
   document.getElementById('productImage').value = '';
 
-  alert('Product added! Check the store page.');
+  alert('Product added! Refresh the store page to see it.');
 }
 </script>
 
